@@ -909,36 +909,13 @@ function Nav({ view, setView, count, user, onLogout }: {
   );
 }
 
-// ─── Composant racine App ─────────────────────────────────────────────────────
+// ─── Composant principal (dashboard + espaces + profil) ──────────────────────
 
-export default function App() {
+function MainApp({ currentUser, onLogout }: { currentUser: AppUser; onLogout: () => void }) {
   const [view, setView] = useState<View>("dashboard");
   const [selectedSpace, setSelectedSpace] = useState<Space | null>(null);
   const [reservations, setReservations] = useState<Reservation[]>(INITIAL_RESERVATIONS);
-  const [currentUser, setCurrentUser] = useState<AppUser | null>(() => getSession());
 
-  // Détection de l'URL /admin pour accéder à la page admin discrètement
-  useEffect(() => {
-    if (window.location.pathname === "/admin") {
-      setView("admin");
-    }
-  }, []);
-
-  // Si pas connecté, afficher la page d'auth
-  if (!currentUser && view !== "admin") {
-    return <AuthView onAuth={(user) => {
-      setSession(user);
-      setCurrentUser(user);
-    }} />;
-  }
-
-  function handleLogout() {
-    clearSession();
-    setCurrentUser(null);
-    setView("dashboard");
-  }
-
-  // Injection des styles globaux une seule fois
   useEffect(() => {
     const el = document.createElement("style");
     el.id = "cowork-flex-styles";
@@ -959,19 +936,54 @@ export default function App() {
 
   return (
     <div className="min-h-screen" style={{ fontFamily: "'Inter', sans-serif", background: "#090C14" }}>
-      {view !== "space" && view !== "admin" && <Nav view={view} setView={setView} count={upcomingCount} user={currentUser!} onLogout={handleLogout} />}
-
+      {view !== "space" && <Nav view={view} setView={setView} count={upcomingCount} user={currentUser} onLogout={onLogout} />}
       {view === "dashboard" && <Dashboard onSelectSpace={handleSelectSpace} />}
       {view === "space" && selectedSpace && (
         <SpaceView space={selectedSpace} onBack={handleBack} onReserve={handleReserve} />
       )}
       {view === "profile" && (
         <ProfileView reservations={reservations} onCancel={handleCancel}
-          userName={currentUser?.name ?? ""} userEmail={currentUser?.email ?? ""} />
-      )}
-      {view === "admin" && (
-        <AdminView onBack={() => setView("dashboard")} />
+          userName={currentUser.name} userEmail={currentUser.email} />
       )}
     </div>
   );
+}
+
+// ─── Composant racine App ─────────────────────────────────────────────────────
+
+export default function App() {
+  const [currentUser, setCurrentUser] = useState<AppUser | null>(() => getSession());
+  const isAdmin = window.location.pathname === "/admin";
+
+  // Inject styles globaux
+  useEffect(() => {
+    const el = document.createElement("style");
+    el.id = "cowork-flex-styles";
+    el.textContent = GLOBAL_STYLE;
+    if (!document.getElementById("cowork-flex-styles")) document.head.appendChild(el);
+    return () => { el.remove(); };
+  }, []);
+
+  // Page admin — pas besoin d'être connecté
+  if (isAdmin) {
+    return <AdminView onBack={() => window.location.href = "/"} />;
+  }
+
+  // Pas connecté → page auth
+  if (!currentUser) {
+    return (
+      <AuthView onAuth={(user) => {
+        setSession(user);
+        setCurrentUser(user);
+      }} />
+    );
+  }
+
+  // Connecté → app principale
+  function handleLogout() {
+    clearSession();
+    setCurrentUser(null);
+  }
+
+  return <MainApp currentUser={currentUser} onLogout={handleLogout} />;
 }
