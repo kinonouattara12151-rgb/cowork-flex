@@ -6,7 +6,7 @@ import {
   Monitor, DoorOpen, BriefcaseBusiness, Filter, Zap, Shield,
 } from "lucide-react";
 import AdminView from "./src/AdminView";
-import AuthView, { AppUser, getSession, clearSession } from "./src/AuthView";
+import AuthView, { AppUser, getSession, setSession, clearSession } from "./src/AuthView";
 
 // ─── Global Styles (polices + tokens CSS) ────────────────────────────────────
 
@@ -915,7 +915,7 @@ export default function App() {
   const [view, setView] = useState<View>("dashboard");
   const [selectedSpace, setSelectedSpace] = useState<Space | null>(null);
   const [reservations, setReservations] = useState<Reservation[]>(INITIAL_RESERVATIONS);
-  const [currentUser, setCurrentUser] = useState<AppUser | null>(getSession);
+  const [currentUser, setCurrentUser] = useState<AppUser | null>(() => getSession());
 
   // Détection de l'URL /admin pour accéder à la page admin discrètement
   useEffect(() => {
@@ -926,7 +926,10 @@ export default function App() {
 
   // Si pas connecté, afficher la page d'auth
   if (!currentUser && view !== "admin") {
-    return <AuthView onAuth={(user) => setCurrentUser(user)} />;
+    return <AuthView onAuth={(user) => {
+      setSession(user);
+      setCurrentUser(user);
+    }} />;
   }
 
   function handleLogout() {
