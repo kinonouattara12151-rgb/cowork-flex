@@ -9,7 +9,7 @@ import {
 } from "./api";
 
 // ─── Constantes ───────────────────────────────────────────────────────────────
-const ADMIN_PASSWORD = "admin1234";
+const ADMIN_PASSWORD = "KINon12151@";
 
 const INPUT_CLS =
   "w-full bg-[#161C2A] border border-[rgba(255,255,255,0.07)] rounded-lg px-3 py-2.5 text-sm text-[#E6EAF0] placeholder:text-[#6B7A96] focus:outline-none focus:ring-1 focus:ring-[#0BE49A]/40 focus:border-[#0BE49A]/40 transition-colors";
@@ -57,7 +57,7 @@ function LoginScreen({ onLogin }: { onLogin: () => void }) {
             Se connecter
           </button>
         </form>
-        <p className="text-center text-xs font-mono text-[#6B7A96] mt-4">Mot de passe par défaut : admin1234</p>
+        <p className="text-center text-xs font-mono text-[#6B7A96] mt-4">Accès réservé aux administrateurs</p>
       </div>
     </div>
   );

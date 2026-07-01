@@ -872,7 +872,6 @@ function Nav({ view, setView, count }: { view: View; setView: (v: View) => void;
           {([
             { id: "dashboard" as View, label: "Espaces", Icon: LayoutDashboard, badge: 0 },
             { id: "profile"   as View, label: "Mes Réservations", Icon: BookOpen, badge: count },
-            { id: "admin"     as View, label: "Admin", Icon: Shield, badge: 0 },
           ]).map(({ id, label, Icon, badge }) => (
             <button key={id} onClick={() => setView(id)}
               className={`flex items-center gap-2 px-3 py-1.5 rounded-lg text-xs font-mono font-medium transition-all ${
@@ -900,6 +899,13 @@ export default function App() {
   const [view, setView] = useState<View>("dashboard");
   const [selectedSpace, setSelectedSpace] = useState<Space | null>(null);
   const [reservations, setReservations] = useState<Reservation[]>(INITIAL_RESERVATIONS);
+
+  // Détection de l'URL /admin pour accéder à la page admin discrètement
+  useEffect(() => {
+    if (window.location.pathname === "/admin") {
+      setView("admin");
+    }
+  }, []);
 
   // Injection des styles globaux une seule fois
   useEffect(() => {
