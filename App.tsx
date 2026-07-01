@@ -229,6 +229,61 @@ const DESKS: Desk[] = [
   { id: "d8", spaceId: "s2", name: "Salle Lumière", type: "meeting", capacity: 6, pricePerHour: 28, available: true, floor: 2 },
   { id: "d9", spaceId: "s3", name: "Open Desk D-22", type: "open", capacity: 1, pricePerHour: 9, available: true, floor: 1 },
   { id: "d10", spaceId: "s3", name: "Salle Summit", type: "meeting", capacity: 20, pricePerHour: 80, available: true, floor: 4 },
+
+  // Abidjan – Plateau Hub (s7)
+  { id: "d11", spaceId: "s7", name: "Open Desk P-01", type: "open", capacity: 1, pricePerHour: 5, available: true, floor: 1 },
+  { id: "d12", spaceId: "s7", name: "Open Desk P-02", type: "open", capacity: 1, pricePerHour: 5, available: true, floor: 1 },
+  { id: "d13", spaceId: "s7", name: "Salle Abissa", type: "meeting", capacity: 8, pricePerHour: 20, available: true, floor: 2 },
+  { id: "d14", spaceId: "s7", name: "Bureau Privé 101", type: "private", capacity: 3, pricePerHour: 15, available: true, floor: 1 },
+
+  // Abidjan – Cocody Lab (s8)
+  { id: "d15", spaceId: "s8", name: "Open Desk C-01", type: "open", capacity: 1, pricePerHour: 4, available: true, floor: 1 },
+  { id: "d16", spaceId: "s8", name: "Open Desk C-02", type: "open", capacity: 1, pricePerHour: 4, available: true, floor: 1 },
+  { id: "d17", spaceId: "s8", name: "Salle Lagune", type: "meeting", capacity: 6, pricePerHour: 16, available: true, floor: 2 },
+  { id: "d18", spaceId: "s8", name: "Bureau Privé 201", type: "private", capacity: 2, pricePerHour: 12, available: true, floor: 2 },
+
+  // Abidjan – Marcory Work (s9)
+  { id: "d19", spaceId: "s9", name: "Open Desk M-01", type: "open", capacity: 1, pricePerHour: 4, available: true, floor: 1 },
+  { id: "d20", spaceId: "s9", name: "Salle Ébrié", type: "meeting", capacity: 8, pricePerHour: 18, available: true, floor: 1 },
+  { id: "d21", spaceId: "s9", name: "Bureau Privé 101", type: "private", capacity: 2, pricePerHour: 10, available: true, floor: 1 },
+
+  // Abidjan – Yopougon Space (s10)
+  { id: "d22", spaceId: "s10", name: "Open Desk Y-01", type: "open", capacity: 1, pricePerHour: 3, available: true, floor: 1 },
+  { id: "d23", spaceId: "s10", name: "Open Desk Y-02", type: "open", capacity: 1, pricePerHour: 3, available: true, floor: 1 },
+  { id: "d24", spaceId: "s10", name: "Salle Banco", type: "meeting", capacity: 6, pricePerHour: 12, available: true, floor: 1 },
+
+  // Yamoussoukro (s11)
+  { id: "d25", spaceId: "s11", name: "Open Desk Y-01", type: "open", capacity: 1, pricePerHour: 4, available: true, floor: 1 },
+  { id: "d26", spaceId: "s11", name: "Salle Basilique", type: "meeting", capacity: 10, pricePerHour: 18, available: true, floor: 2 },
+  { id: "d27", spaceId: "s11", name: "Bureau Privé 101", type: "private", capacity: 3, pricePerHour: 12, available: true, floor: 1 },
+
+  // Man (s12)
+  { id: "d28", spaceId: "s12", name: "Open Desk M-01", type: "open", capacity: 1, pricePerHour: 3, available: true, floor: 1 },
+  { id: "d29", spaceId: "s12", name: "Salle Mont Nimba", type: "meeting", capacity: 6, pricePerHour: 12, available: true, floor: 1 },
+
+  // Daloa (s13)
+  { id: "d30", spaceId: "s13", name: "Open Desk D-01", type: "open", capacity: 1, pricePerHour: 3, available: true, floor: 1 },
+  { id: "d31", spaceId: "s13", name: "Salle Sassandra", type: "meeting", capacity: 8, pricePerHour: 14, available: true, floor: 1 },
+  { id: "d32", spaceId: "s13", name: "Bureau Privé 101", type: "private", capacity: 2, pricePerHour: 10, available: true, floor: 1 },
+
+  // Gagnoa (s14)
+  { id: "d33", spaceId: "s14", name: "Open Desk G-01", type: "open", capacity: 1, pricePerHour: 3, available: true, floor: 1 },
+  { id: "d34", spaceId: "s14", name: "Salle Gôh", type: "meeting", capacity: 6, pricePerHour: 10, available: true, floor: 1 },
+
+  // Soubré (s15)
+  { id: "d35", spaceId: "s15", name: "Open Desk S-01", type: "open", capacity: 1, pricePerHour: 2, available: true, floor: 1 },
+  { id: "d36", spaceId: "s15", name: "Salle Cacao", type: "meeting", capacity: 6, pricePerHour: 10, available: true, floor: 1 },
+
+  // Bouaké (s16)
+  { id: "d37", spaceId: "s16", name: "Open Desk B-01", type: "open", capacity: 1, pricePerHour: 4, available: true, floor: 1 },
+  { id: "d38", spaceId: "s16", name: "Open Desk B-02", type: "open", capacity: 1, pricePerHour: 4, available: true, floor: 1 },
+  { id: "d39", spaceId: "s16", name: "Salle Gbêkê", type: "meeting", capacity: 12, pricePerHour: 20, available: true, floor: 2 },
+  { id: "d40", spaceId: "s16", name: "Bureau Privé 201", type: "private", capacity: 4, pricePerHour: 14, available: true, floor: 2 },
+
+  // San-Pédro (s17)
+  { id: "d41", spaceId: "s17", name: "Open Desk SP-01", type: "open", capacity: 1, pricePerHour: 3, available: true, floor: 1 },
+  { id: "d42", spaceId: "s17", name: "Salle Port", type: "meeting", capacity: 8, pricePerHour: 16, available: true, floor: 1 },
+  { id: "d43", spaceId: "s17", name: "Bureau Privé 101", type: "private", capacity: 2, pricePerHour: 10, available: true, floor: 1 },
 ];
 
 const INITIAL_RESERVATIONS: Reservation[] = [
