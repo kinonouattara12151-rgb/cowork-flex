@@ -6,6 +6,7 @@ import {
   Monitor, DoorOpen, BriefcaseBusiness, Filter, Zap, Shield,
 } from "lucide-react";
 import AdminView from "./src/AdminView";
+import AuthView, { AppUser, getSession, clearSession } from "./src/AuthView";
 
 // ─── Global Styles (polices + tokens CSS) ────────────────────────────────────
 
@@ -770,8 +771,9 @@ function ReservationRow({ r, onCancel }: { r: Reservation; onCancel: (() => void
   );
 }
 
-function ProfileView({ reservations, onCancel }: {
+function ProfileView({ reservations, onCancel, userName, userEmail }: {
   reservations: Reservation[]; onCancel: (id: string) => void;
+  userName: string; userEmail: string;
 }) {
   const [cancelId, setCancelId] = useState<string | null>(null);
   const today = new Date().toISOString().split("T")[0];
@@ -789,8 +791,8 @@ function ProfileView({ reservations, onCancel }: {
         </div>
         <div>
           <p className="text-xs font-mono text-[#0BE49A] uppercase tracking-widest mb-0.5">Profil / Réservations</p>
-          <h1 className="font-display text-2xl font-bold text-[#E6EAF0]">Kinon OUATTARA</h1>
-          <p className="text-sm text-[#6B7A96]">kinonouattara12151@example.com</p>
+          <h1 className="font-display text-2xl font-bold text-[#E6EAF0]">{userName}</h1>
+          <p className="text-sm text-[#6B7A96]">{userEmail}</p>
         </div>
       </div>
 
@@ -857,7 +859,10 @@ function ProfileView({ reservations, onCancel }: {
 
 // ─── Navigation ───────────────────────────────────────────────────────────────
 
-function Nav({ view, setView, count }: { view: View; setView: (v: View) => void; count: number }) {
+function Nav({ view, setView, count, user, onLogout }: {
+  view: View; setView: (v: View) => void; count: number;
+  user: AppUser; onLogout: () => void;
+}) {
   return (
     <nav className="sticky top-0 z-40 border-b border-[rgba(255,255,255,0.07)]"
       style={{ background: "rgba(9,12,20,0.85)", backdropFilter: "blur(12px)" }}>
@@ -868,7 +873,7 @@ function Nav({ view, setView, count }: { view: View; setView: (v: View) => void;
           </div>
           <span className="font-display font-bold text-[#E6EAF0] text-sm tracking-tight">CoWork-Flex</span>
         </div>
-        <div className="flex items-center gap-1">
+        <div className="flex items-center gap-2">
           {([
             { id: "dashboard" as View, label: "Espaces", Icon: LayoutDashboard, badge: 0 },
             { id: "profile"   as View, label: "Mes Réservations", Icon: BookOpen, badge: count },
@@ -887,6 +892,17 @@ function Nav({ view, setView, count }: { view: View; setView: (v: View) => void;
               )}
             </button>
           ))}
+          {/* Utilisateur connecté + déconnexion */}
+          <div className="flex items-center gap-2 ml-2 pl-2 border-l border-[rgba(255,255,255,0.07)]">
+            <div className="w-6 h-6 rounded-full bg-[#0BE49A]/10 border border-[#0BE49A]/20 flex items-center justify-center">
+              <User size={11} className="text-[#0BE49A]" />
+            </div>
+            <span className="text-xs font-mono text-[#E6EAF0] hidden sm:block">{user.name.split(" ")[0]}</span>
+            <button onClick={onLogout}
+              className="text-xs font-mono text-[#6B7A96] hover:text-red-400 transition-colors border border-[rgba(255,255,255,0.07)] rounded px-2 py-1 hover:border-red-500/20">
+              Déconnexion
+            </button>
+          </div>
         </div>
       </div>
     </nav>
@@ -899,6 +915,7 @@ export default function App() {
   const [view, setView] = useState<View>("dashboard");
   const [selectedSpace, setSelectedSpace] = useState<Space | null>(null);
   const [reservations, setReservations] = useState<Reservation[]>(INITIAL_RESERVATIONS);
+  const [currentUser, setCurrentUser] = useState<AppUser | null>(getSession);
 
   // Détection de l'URL /admin pour accéder à la page admin discrètement
   useEffect(() => {
@@ -906,6 +923,17 @@ export default function App() {
       setView("admin");
     }
   }, []);
+
+  // Si pas connecté, afficher la page d'auth
+  if (!currentUser && view !== "admin") {
+    return <AuthView onAuth={(user) => setCurrentUser(user)} />;
+  }
+
+  function handleLogout() {
+    clearSession();
+    setCurrentUser(null);
+    setView("dashboard");
+  }
 
   // Injection des styles globaux une seule fois
   useEffect(() => {
@@ -928,14 +956,15 @@ export default function App() {
 
   return (
     <div className="min-h-screen" style={{ fontFamily: "'Inter', sans-serif", background: "#090C14" }}>
-      {view !== "space" && view !== "admin" && <Nav view={view} setView={setView} count={upcomingCount} />}
+      {view !== "space" && view !== "admin" && <Nav view={view} setView={setView} count={upcomingCount} user={currentUser!} onLogout={handleLogout} />}
 
       {view === "dashboard" && <Dashboard onSelectSpace={handleSelectSpace} />}
       {view === "space" && selectedSpace && (
         <SpaceView space={selectedSpace} onBack={handleBack} onReserve={handleReserve} />
       )}
       {view === "profile" && (
-        <ProfileView reservations={reservations} onCancel={handleCancel} />
+        <ProfileView reservations={reservations} onCancel={handleCancel}
+          userName={currentUser?.name ?? ""} userEmail={currentUser?.email ?? ""} />
       )}
       {view === "admin" && (
         <AdminView onBack={() => setView("dashboard")} />
