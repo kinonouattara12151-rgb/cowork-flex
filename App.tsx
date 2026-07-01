@@ -78,6 +78,96 @@ interface Reservation {
 // ─── Données Mock ─────────────────────────────────────────────────────────────
 
 const SPACES: Space[] = [
+  // ── Côte d'Ivoire ────────────────────────────────────────────────────────
+  {
+    id: "s7", name: "Plateau Hub", city: "Abidjan",
+    address: "Avenue Nogues, Le Plateau, Abidjan",
+    rating: 4.8, reviewCount: 214, capacity: 150, available: 42,
+    amenities: ["wifi", "coffee", "printer", "parking"],
+    imageId: "photo-1497366754035-f200968a6e72", priceFrom: 10,
+    description: "Espace moderne au cœur du Plateau, quartier des affaires d'Abidjan.",
+  },
+  {
+    id: "s8", name: "Cocody Lab", city: "Abidjan",
+    address: "Rue des Jardins, Cocody, Abidjan",
+    rating: 4.7, reviewCount: 178, capacity: 120, available: 35,
+    amenities: ["wifi", "coffee", "printer"],
+    imageId: "photo-1521737604893-d14cc237f11d", priceFrom: 8,
+    description: "Cadre verdoyant à Cocody pour freelances et startups en pleine croissance.",
+  },
+  {
+    id: "s9", name: "Marcory Work", city: "Abidjan",
+    address: "Boulevard de Marseille, Marcory, Abidjan",
+    rating: 4.5, reviewCount: 132, capacity: 80, available: 22,
+    amenities: ["wifi", "coffee", "parking"],
+    imageId: "photo-1497366412874-3415097a27e7", priceFrom: 7,
+    description: "Espace accessible et bien connecté dans le quartier résidentiel de Marcory.",
+  },
+  {
+    id: "s10", name: "Yopougon Space", city: "Abidjan",
+    address: "Avenue Pierre Fakhoury, Yopougon, Abidjan",
+    rating: 4.4, reviewCount: 98, capacity: 60, available: 18,
+    amenities: ["wifi", "coffee"],
+    imageId: "photo-1556761175-4b46a572b786", priceFrom: 6,
+    description: "Coworking de proximité à Yopougon, idéal pour les entrepreneurs locaux.",
+  },
+  {
+    id: "s11", name: "Yamoussoukro Connect", city: "Yamoussoukro",
+    address: "Avenue Houphouët-Boigny, Yamoussoukro",
+    rating: 4.6, reviewCount: 87, capacity: 90, available: 28,
+    amenities: ["wifi", "printer", "parking"],
+    imageId: "photo-1497366811353-6870744d04b2", priceFrom: 7,
+    description: "Au cœur de la capitale politique, un espace calme et bien équipé.",
+  },
+  {
+    id: "s12", name: "Man Cowork", city: "Man",
+    address: "Centre-ville, Man, Région du Tonkpi",
+    rating: 4.3, reviewCount: 54, capacity: 40, available: 15,
+    amenities: ["wifi", "coffee"],
+    imageId: "photo-1497366216548-37526070297c", priceFrom: 5,
+    description: "Niché dans la ville aux 18 montagnes, un espace inspirant pour travailler.",
+  },
+  {
+    id: "s13", name: "Daloa Hub", city: "Daloa",
+    address: "Quartier Commerce, Daloa, Région du Haut-Sassandra",
+    rating: 4.4, reviewCount: 61, capacity: 50, available: 16,
+    amenities: ["wifi", "printer", "coffee"],
+    imageId: "photo-1554224155-6726b3ff858f", priceFrom: 5,
+    description: "Espace dynamique au centre de Daloa, carrefour économique du centre-ouest.",
+  },
+  {
+    id: "s14", name: "Gagnoa Work", city: "Gagnoa",
+    address: "Avenue de la Paix, Gagnoa, Région du Gôh",
+    rating: 4.2, reviewCount: 43, capacity: 35, available: 12,
+    amenities: ["wifi", "coffee"],
+    imageId: "photo-1497366754035-f200968a6e72", priceFrom: 5,
+    description: "Petit espace convivial pour professionnels et étudiants à Gagnoa.",
+  },
+  {
+    id: "s15", name: "Soubré Digital", city: "Soubré",
+    address: "Quartier Administratif, Soubré, Région de la Nawa",
+    rating: 4.1, reviewCount: 38, capacity: 30, available: 10,
+    amenities: ["wifi", "coffee"],
+    imageId: "photo-1521737604893-d14cc237f11d", priceFrom: 4,
+    description: "Premier espace de coworking de la capitale du cacao ivoirien.",
+  },
+  {
+    id: "s16", name: "Bouaké Central", city: "Bouaké",
+    address: "Avenue de la République, Bouaké, Région du Gbêkê",
+    rating: 4.6, reviewCount: 143, capacity: 110, available: 33,
+    amenities: ["wifi", "parking", "printer", "coffee"],
+    imageId: "photo-1497366412874-3415097a27e7", priceFrom: 7,
+    description: "Le plus grand coworking du centre du pays, dans la 2ème ville de Côte d'Ivoire.",
+  },
+  {
+    id: "s17", name: "San-Pédro Bay", city: "San-Pédro",
+    address: "Zone Portuaire, San-Pédro, Région du San-Pédro",
+    rating: 4.5, reviewCount: 76, capacity: 65, available: 20,
+    amenities: ["wifi", "parking", "coffee"],
+    imageId: "photo-1556761175-4b46a572b786", priceFrom: 6,
+    description: "Vue sur le port, espace idéal pour les professionnels du commerce maritime.",
+  },
+  // ── France ───────────────────────────────────────────────────────────────
   {
     id: "s1", name: "Nexus Hub", city: "Paris",
     address: "42 Rue du Faubourg Saint-Antoine, 75011",
@@ -182,7 +272,7 @@ const AMENITY_ICONS: Record<string, typeof Wifi> = {
 const AMENITY_LABELS: Record<string, string> = {
   wifi: "Wifi", parking: "Parking", printer: "Imprimante", coffee: "Café",
 };
-const CITIES = ["Toutes les villes", "Paris", "Lyon", "Marseille", "Bordeaux"];
+const CITIES = ["Toutes les villes", "Abidjan", "Yamoussoukro", "Bouaké", "San-Pédro", "Daloa", "Man", "Gagnoa", "Soubré", "Paris", "Lyon", "Marseille", "Bordeaux"];
 
 // ─── Helpers ──────────────────────────────────────────────────────────────────
 
