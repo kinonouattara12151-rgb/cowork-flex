@@ -1,0 +1,13 @@
+com\coworkflex\controller\SpaceController.class
+com\coworkflex\controller\DeskController.class
+com\coworkflex\entity\ReservationStatus.class
+com\coworkflex\CoworkFlexApplication.class
+com\coworkflex\entity\Space.class
+com\coworkflex\repository\SpaceRepository.class
+com\coworkflex\controller\ReservationController.class
+com\coworkflex\controller\ReservationRequest.class
+com\coworkflex\repository\ReservationRepository.class
+com\coworkflex\entity\Reservation.class
+com\coworkflex\repository\DeskRepository.class
+com\coworkflex\entity\Desk.class
+com\coworkflex\entity\DeskType.class

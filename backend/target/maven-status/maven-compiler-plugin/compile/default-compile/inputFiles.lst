@@ -1,0 +1,13 @@
+C:\Users\simplon\Desktop\CoWork-Flex\backend\src\main\java\com\coworkflex\controller\DeskController.java
+C:\Users\simplon\Desktop\CoWork-Flex\backend\src\main\java\com\coworkflex\controller\ReservationController.java
+C:\Users\simplon\Desktop\CoWork-Flex\backend\src\main\java\com\coworkflex\controller\ReservationRequest.java
+C:\Users\simplon\Desktop\CoWork-Flex\backend\src\main\java\com\coworkflex\controller\SpaceController.java
+C:\Users\simplon\Desktop\CoWork-Flex\backend\src\main\java\com\coworkflex\CoworkFlexApplication.java
+C:\Users\simplon\Desktop\CoWork-Flex\backend\src\main\java\com\coworkflex\entity\Desk.java
+C:\Users\simplon\Desktop\CoWork-Flex\backend\src\main\java\com\coworkflex\entity\DeskType.java
+C:\Users\simplon\Desktop\CoWork-Flex\backend\src\main\java\com\coworkflex\entity\Reservation.java
+C:\Users\simplon\Desktop\CoWork-Flex\backend\src\main\java\com\coworkflex\entity\ReservationStatus.java
+C:\Users\simplon\Desktop\CoWork-Flex\backend\src\main\java\com\coworkflex\entity\Space.java
+C:\Users\simplon\Desktop\CoWork-Flex\backend\src\main\java\com\coworkflex\repository\DeskRepository.java
+C:\Users\simplon\Desktop\CoWork-Flex\backend\src\main\java\com\coworkflex\repository\ReservationRepository.java
+C:\Users\simplon\Desktop\CoWork-Flex\backend\src\main\java\com\coworkflex\repository\SpaceRepository.java
