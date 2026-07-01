@@ -3,8 +3,9 @@ import {
   Search, MapPin, Users, Building2, Coffee, X, Calendar,
   Clock, ChevronRight, Star, Wifi, Car, Printer, CheckCircle2,
   XCircle, ArrowLeft, User, LayoutDashboard, BookOpen,
-  Monitor, DoorOpen, BriefcaseBusiness, Filter, Zap,
+  Monitor, DoorOpen, BriefcaseBusiness, Filter, Zap, Shield,
 } from "lucide-react";
+import AdminView from "./src/AdminView";
 
 // ─── Global Styles (polices + tokens CSS) ────────────────────────────────────
 
@@ -56,7 +57,7 @@ const GLOBAL_STYLE = `
 
 type DeskType = "open" | "meeting" | "private";
 type ReservationStatus = "confirmed" | "pending" | "cancelled";
-type View = "dashboard" | "space" | "profile";
+type View = "dashboard" | "space" | "profile" | "admin";
 
 interface Space {
   id: string; name: string; city: string; address: string;
@@ -871,6 +872,7 @@ function Nav({ view, setView, count }: { view: View; setView: (v: View) => void;
           {([
             { id: "dashboard" as View, label: "Espaces", Icon: LayoutDashboard, badge: 0 },
             { id: "profile"   as View, label: "Mes Réservations", Icon: BookOpen, badge: count },
+            { id: "admin"     as View, label: "Admin", Icon: Shield, badge: 0 },
           ]).map(({ id, label, Icon, badge }) => (
             <button key={id} onClick={() => setView(id)}
               className={`flex items-center gap-2 px-3 py-1.5 rounded-lg text-xs font-mono font-medium transition-all ${
@@ -920,7 +922,7 @@ export default function App() {
 
   return (
     <div className="min-h-screen" style={{ fontFamily: "'Inter', sans-serif", background: "#090C14" }}>
-      {view !== "space" && <Nav view={view} setView={setView} count={upcomingCount} />}
+      {view !== "space" && view !== "admin" && <Nav view={view} setView={setView} count={upcomingCount} />}
 
       {view === "dashboard" && <Dashboard onSelectSpace={handleSelectSpace} />}
       {view === "space" && selectedSpace && (
@@ -928,6 +930,9 @@ export default function App() {
       )}
       {view === "profile" && (
         <ProfileView reservations={reservations} onCancel={handleCancel} />
+      )}
+      {view === "admin" && (
+        <AdminView onBack={() => setView("dashboard")} />
       )}
     </div>
   );
