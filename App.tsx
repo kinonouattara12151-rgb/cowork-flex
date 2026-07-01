@@ -507,7 +507,7 @@ function SpaceCard({ space, onClick }: { space: Space; onClick: () => void }) {
           <div className="flex gap-1.5">
             {space.amenities.slice(0, 3).map(a => {
               const Icon = AMENITY_ICONS[a];
-              return <Icon key={a} size={12} className="text-[#6B7A96]" title={AMENITY_LABELS[a]} />;
+              return <Icon key={a} size={12} className="text-[#6B7A96]" />;
             })}
           </div>
         </div>
